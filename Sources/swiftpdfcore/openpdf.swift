@@ -10,7 +10,7 @@ public func copyData(infile: String, outfile: String) {
     }
 
 public func readPDF(infile: String) -> String {
-    let pdata = NSData(contentsOfFile: infile)
+    let pdata = try! NSData(contentsOfFile: infile) as Data
     let pdf = PDFDocument(data: pdata)
     return pdf!.string!
 }

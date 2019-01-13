@@ -10,7 +10,7 @@ do {
 
 let pdffile1 = "page1.pdf"
 
-print(readPDF(pdffile1))
+print(readPDF(infile: pdffile1))
 
 // let outfile = "pdfout.pdf"
 
