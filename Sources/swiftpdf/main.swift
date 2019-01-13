@@ -10,8 +10,10 @@ do {
 
 let pdffile1 = "page1.pdf"
 
-let outfile = "pdfout.pdf"
+print(readPDF(pdffile1))
 
-copyData(infile: pdffile1, outfile: outfile)
+// let outfile = "pdfout.pdf"
+
+// copyData(infile: pdffile1, outfile: outfile)
 
 // print("Hello, world!")

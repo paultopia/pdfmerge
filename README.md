@@ -13,4 +13,6 @@ oh wait, that's ios.  maybe https://developer.apple.com/documentation/pdfkit
 
 which is apparently in a framework called quartz, though wouldn't it be nice if it said that... https://stackoverflow.com/questions/40481769/nsimages-to-pdfs-and-merge-them-in-swift
 
+see also http://sketchytech.blogspot.com/2015/05/adventures-in-pdf-swift-and-pdfkit.html
+
 and let's see if things work.
