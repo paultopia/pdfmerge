@@ -11,6 +11,7 @@ public func copyData(infile: String, outfile: String) {
 
 public func readPDF(infile: String) -> String {
     let pdata = try! NSData(contentsOfFile: infile) as Data
+    // but it DOES throw when you try to force cast it with as.  special...
     let pdf = PDFDocument(data: pdata)
     return pdf!.string!
 }
