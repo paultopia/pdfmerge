@@ -1,11 +1,21 @@
 import Quartz
 import Foundation
 
+func fileExists(_ filename: String) -> Bool {
+    let fileManager = FileManager()
+    return fileManager.fileExists(atPath: filename)
+}
 
 func openPDF(_ file: String) -> PDFDocument {
-    let pdata = try! NSData(contentsOfFile: file) as Data
-    let pdf = PDFDocument(data: pdata)
-    return pdf!
+    if fileExists(file){
+        let pdata = try! NSData(contentsOfFile: file) as Data
+        let pdf = PDFDocument(data: pdata)
+        return pdf!
+    }
+    else {
+        print("Unable to find file \(file), aborting.")
+        exit(1)
+    }
 }
 
 public func mergePDFs(files: [String]) -> PDFDocument {
@@ -35,7 +45,3 @@ func listPDFsInCurrentDirectory() -> [String]{
     return pdfs.sorted(by: <)
 }
 
-func fileExists(_ filename: String) -> Bool {
-    let fileManager = FileManager()
-    return fileManager.fileExists(atPath: filename)
-}

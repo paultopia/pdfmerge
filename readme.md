@@ -2,6 +2,8 @@
 
 Small CLI to merge PDFs.  In Swift, so probably only works on Mac (might work on Linux?  Maybe?  Dunno.).
 
+## Usage
+
 Calling options:
 
 ```
@@ -22,13 +24,17 @@ pdfmerge infiles.txt outfile.pdf
 
 merges files listed line-by-line in infiles.txt
 
+<hr>
+
+## Misc info
+
 Depending on the PDF files you use, it might warn you with `CoreGraphics PDF has logged an error. Set environment variabe "CG_PDF_VERBOSE" to learn more.` (including the typo!!). That error is probably safe to ignore: in my local development after setting that variable it turns out it's just some random font problem, probably pandoc/latex's fault. `WARNING: Type1 font data isn't in the correct format required by the Adobe Type 1 Font Format specification.`
 
 This is just a learning project, plus because my [original pdf merging cli](https://github.com/paultopia/mergepdfs) seems to get the order wrong sometimes + has an annoying java dependency. Mostly follwing instructions in [this excellent tutorial](https://www.swiftbysundell.com/posts/building-a-command-line-tool-using-the-swift-package-manager) for structuring the project. 
 
 No tests or anything yet.  When I want to learn how to write tests in swift I'll probably put some in. 
 
-Also, no error handling at all, it will blow up horribly if you give it nonexistent files, likely with incomprehensible error messages
+Also, no error handling at all, if you give it a bad PDF file, it'll just crash. If you give it a nonexistent file to merge, it'll crash.  
 
 However, if you tell it to write to a file that already exists it'll at least be decent enough to refuse to do that.
 
