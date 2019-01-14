@@ -2,7 +2,7 @@
 
 learning package
 
-currently can merge two PDFs of arbitrary length.
+currently can merge arbitrary number of PDFs.
 
 It throws an error and declares `CoreGraphics PDF has logged an error. Set environment variabe "CG_PDF_VERBOSE" to learn more.` (including the typo!!) but after setting that variable it turns out it's just some random font problem, probably pandoc/latex's fault. `WARNING: Type1 font data isn't in the correct format required by the Adobe Type 1 Font Format specification.`
 

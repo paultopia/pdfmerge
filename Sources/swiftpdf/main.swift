@@ -2,7 +2,7 @@ import swiftpdfcore
 
 let pdfs = ["page1.pdf", "long1.pdf", "long2.pdf", "page2.pdf"]
 let mergedfile = "merged.pdf"
-let merged = mergePDFs(pdfs)
+let merged = mergePDFs(files: pdfs)
 merged.write(toFile: mergedfile)
 
 // let long1 = "long1.pdf"
