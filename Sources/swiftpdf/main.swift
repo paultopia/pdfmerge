@@ -8,7 +8,7 @@ let mergedfile = "merged.pdf"
 
 let merged = mergeSinglePagePDFs(file1: pdf1, file2: pdf2)
 
-try! merged.write(toFile: mergedfile)
+merged.write(toFile: mergedfile)
 
 // print(readPDF(infile: pdf1))
 
