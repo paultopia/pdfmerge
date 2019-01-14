@@ -27,3 +27,7 @@ public func mergePDFs(files: [String]) -> PDFDocument {
     }
     return pdf
 }
+
+// func listPDFsinCurrentDirectory(_ directory: String) -> [String]{
+    
+// }
