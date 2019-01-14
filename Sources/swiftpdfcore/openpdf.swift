@@ -53,8 +53,8 @@ public func mergePDFs(files: [String]) -> PDFDocument {
     let first = files[0]
     let rest = files[1...]
     let pdf = openPDF(first)
-    var curpagenum = pdf1!.pageCount
-    var cur2add = PDFDocument
+    var curpagenum = pdf!.pageCount
+    var cur2add: PDFDocument
     var curpage: PDFPage
     var lenOfCurAdd = Int
     for p2add in rest {
