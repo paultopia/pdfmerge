@@ -20,9 +20,9 @@ public final class PDFMerger {
             print("syntax: swiftpdf file1.pdf file2.pdf... target.pdf")
         default:
             let outfile = self.arguments.removeLast()
-            let files = self.arguments[1...]
-            print(outfile)
-            print(files)
+            let files = Array(self.arguments[1...])
+            doMerge(files: files, outfile: outfile)
+            print("done!")
         }
     }
 }
