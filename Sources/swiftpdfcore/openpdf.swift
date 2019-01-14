@@ -43,7 +43,7 @@ public func mergeTwoLongPDFs(file1: String, file2: String) -> PDFDocument {
     return pdf1!
 }
 
-func openPDF(file: String) -> PDFDocument {
+func openPDF(_ file: String) -> PDFDocument {
     let pdata = try! NSData(contentsOfFile: file) as Data
     let pdf = PDFDocument(data: pdata)
     return pdf!
@@ -53,10 +53,10 @@ public func mergePDFs(files: [String]) -> PDFDocument {
     let first = files[0]
     let rest = files[1...]
     let pdf = openPDF(first)
-    var curpagenum = pdf!.pageCount
+    var curpagenum = pdf.pageCount
     var cur2add: PDFDocument
     var curpage: PDFPage
-    var lenOfCurAdd = Int
+    var lenOfCurAdd: Int
     for p2add in rest {
         cur2add = openPDF(p2add)
         lenOfCurAdd = cur2add.pageCount
