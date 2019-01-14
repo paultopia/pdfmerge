@@ -37,13 +37,14 @@ public final class PDFMerger {
         case 1:
             print(instructions)
         case 2:
-            print(listPDFsInCurrentDirectory())
+            let outfile = self.arguments.removeLast()
+            let files = listPDFsInCurrentDirectory()
+            doMerge(files: files, outfile: outfile)
         case 3:
             let outfile = self.arguments.removeLast()
             let files = getListFromFile(self.arguments[1])
             doMerge(files: files, outfile: outfile)
             print("done!")
-
         default:
             let outfile = self.arguments.removeLast()
             let files = Array(self.arguments[1...])
