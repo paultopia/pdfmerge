@@ -25,5 +25,4 @@ public func mergeSinglePagePDFs(file1: String, file2: String) -> PDFDocument {
     let page2 = pdf2!.page(at: 0)
     pdf1!.insert(page2!, at: 1)
     return pdf1!
-
 }

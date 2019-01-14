@@ -1,12 +1,19 @@
 import swiftpdfcore
 
 
-let pdffile1 = "page1.pdf"
+let pdf1 = "page1.pdf"
+let pdf2 = "page2.pdf"
 
-print(readPDF(infile: pdffile1))
+let mergedfile = "merged.pdf"
+
+let merged = mergeSinglePagePDFs(file1: pdf1, file2: pdf2)
+
+try! merged.write(toFile: mergedfile)
+
+// print(readPDF(infile: pdf1))
 
 // let outfile = "pdfout.pdf"
 
-// copyData(infile: pdffile1, outfile: outfile)
+// copyData(infile: pdf1, outfile: outfile)
 
 // print("Hello, world!")

@@ -15,4 +15,8 @@ which is apparently in a framework called quartz, though wouldn't it be nice if 
 
 see also http://sketchytech.blogspot.com/2015/05/adventures-in-pdf-swift-and-pdfkit.html
 
+https://equaleyes.com/blog/2018/02/02/introducing-pdfkit-the-right-way-to-treat-your-pdfs-on-ios/
+
+https://stackoverflow.com/questions/40481769/nsimages-to-pdfs-and-merge-them-in-swift
+
 and let's see if things work.
