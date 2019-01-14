@@ -32,7 +32,7 @@ All code released under the WTFPL, included below:
 
 <hr>
 
-[DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE](http://www.wtfpl.net/) 
+[DO WHAT(ever) THE FUCK YOU WANT TO PUBLIC LICENSE](http://www.wtfpl.net/) 
 
 Version 2, December 2004 
 
@@ -41,7 +41,7 @@ Code (C) 2019 Paul Gowder <paul.gowder@gmail.com>
 License text copyright (C) 2004 Sam Hocevar <sam@hocevar.net> 
 
  Everyone is permitted to copy and distribute verbatim or modified 
- copies of this license document, and changing it is allowed as long 
+ copies of this license document [and code], and changing it is allowed as long 
  as the name is changed. 
 
             DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
