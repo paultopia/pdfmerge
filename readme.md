@@ -28,8 +28,11 @@ This is just a learning project, plus because my [original pdf merging cli](http
 
 No tests or anything yet.  When I want to learn how to write tests in swift I'll probably put some in. 
 
+All code released under the WTFPL, included below:
 
-(DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE](http://www.wtfpl.net/) 
+<hr>
+
+[DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE](http://www.wtfpl.net/) 
 
 Version 2, December 2004 
 
