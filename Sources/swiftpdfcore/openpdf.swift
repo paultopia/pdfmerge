@@ -61,8 +61,8 @@ public func mergePDFs(files: [String]) -> PDFDocument {
         cur2add = openPDF(p2add)
         lenOfCurAdd = cur2add.pageCount
         for i in 0..<lenOfCurAdd {
-            curpage = cur2add.page(at: i)
-            pdf.insert(curpage, at: curpage)
+            curpage = cur2add.page(at: i)!
+            pdf.insert(curpage, at: curpagenum)
             curpagenum+=1
         }
     }
