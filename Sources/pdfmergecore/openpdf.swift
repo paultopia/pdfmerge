@@ -34,3 +34,8 @@ func listPDFsInCurrentDirectory() -> [String]{
     let pdfs = files.filter { $0.hasSuffix(".pdf") }
     return pdfs.sorted(by: <)
 }
+
+func fileExists(_ filename: String) -> Bool {
+    let fileManager = FileManager()
+    return fileManager.fileExists(atPath: filename)
+}

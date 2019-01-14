@@ -28,6 +28,14 @@ This is just a learning project, plus because my [original pdf merging cli](http
 
 No tests or anything yet.  When I want to learn how to write tests in swift I'll probably put some in. 
 
+Also, no error handling at all, it will blow up horribly if you give it nonexistent files, likely with incomprehensible error messages
+
+However, if you tell it to write to a file that already exists it'll at least be decent enough to refuse to do that.
+
+Not tested on any paths other than current directory, so no promises that it'll work other than on files in the directory you happen to run it in. Please file an issue if that doesn't work though, and I'll learn how paths in swift work.
+
+Current binary in releases tab.
+
 All code released under the WTFPL, included below:
 
 <hr>

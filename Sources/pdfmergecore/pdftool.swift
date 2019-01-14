@@ -7,9 +7,14 @@ public final class PDFMerger {
         self.arguments = arguments
     }
 
-    fileprivate func doMerge(files: [String], outfile: String){
+    fileprivate func doMerge(files: [String], outfile: String) {
+        if fileExists(outfile) {
+            print("ERROR: target file already exists. Aborting.")
+        }
+        else {
         let merged = mergePDFs(files: files)
         merged.write(toFile: outfile)
+        }
     }
 
     fileprivate func fixSubstrings(_ ick: [Substring]) -> [String]{
