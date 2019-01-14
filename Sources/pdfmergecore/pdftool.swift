@@ -34,9 +34,10 @@ public final class PDFMerger {
           "pdfmerge infiles.txt outfile.pdf" -> merges files listed line-by-line in infiles.txt
           """
         switch self.arguments.count {
-        case 1,
-             2:
+        case 1:
             print(instructions)
+        case 2:
+            print(listPDFsInCurrentDirectory())
         case 3:
             let outfile = self.arguments.removeLast()
             let files = getListFromFile(self.arguments[1])

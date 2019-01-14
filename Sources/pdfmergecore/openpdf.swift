@@ -28,6 +28,9 @@ public func mergePDFs(files: [String]) -> PDFDocument {
     return pdf
 }
 
-// func listPDFsinCurrentDirectory(_ directory: String) -> [String]{
+func listPDFsInCurrentDirectory() -> [String]{
+    let fileManager = FileManager()
+    let files = try! fileManager.contentsOfDirectory(atPath: ".")
+    return files
     
-// }
+}
