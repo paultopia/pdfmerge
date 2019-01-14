@@ -1,13 +1,28 @@
 import Foundation
 
-public final class PDFTool {
-    private let arguments: [String]
+public final class PDFMerger {
+    private var arguments: [String]
 
     public init(arguments: [String] = CommandLine.arguments) { 
         self.arguments = arguments
     }
 
-    public func run() throws {
-        print("Hello world")
+    fileprivate func doMerge(files: [String], outfile: String){
+        let merged = mergePDFs(files: files)
+        merged.write(toFile: outfile)
+    }
+
+    public func run() {
+        switch self.arguments.count {
+        case 1,
+             2,
+             3:
+            print("syntax: swiftpdf file1.pdf file2.pdf... target.pdf")
+        default:
+            let outfile = self.arguments.removeLast()
+            let files = self.arguments[1...]
+            print(outfile)
+            print(files)
+        }
     }
 }
