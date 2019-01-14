@@ -1,4 +1,4 @@
-import swiftpdfcore
+import pdfmergecore
 
 let merger = PDFMerger()
 
