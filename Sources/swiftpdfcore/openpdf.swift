@@ -36,9 +36,9 @@ public func mergeTwoLongPDFs(file1: String, file2: String) -> PDFDocument {
     var curpage = pdf1!.pageCount
     var page: PDFPage
     for i in 0..<p2len {
-        page = pdf2!.page(at: i)
-        pdf1!.insert(page! at: curpage)
-        curpage++
+        page = pdf2!.page(at: i)!
+        pdf1!.insert(page, at: curpage)
+        curpage+=1
     }
     return pdf1!
 }
