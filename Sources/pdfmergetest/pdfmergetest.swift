@@ -7,9 +7,9 @@ class PDFMergeCoreTests: XCTestCase {
 
     let shortstring = "Page 1\n\nPage 2\n\nPage 3\n\nPage 4\n"
 
-    let longstring = "Page 1\n\nPage 2\n\nPage 3\n\nPage 4\n\nPage5\n\nPage6\n"
+    let longstring = "Page 1\n\nPage 2\n\nPage 3\n\nPage 4\n\nPage 5\n\nPage 6\n"
 
-    let funkystring = "Page 1\n\nPage 2\n\nPage5\n\nPage6\n"
+    let funkystring = "Page 1\n\nPage 2\n\nPage 5\n\nPage 6\n"
 
     let backwardstring = "Page 3\n\nPage 4\n\nPage 1\n\nPage 2\n"
 
@@ -30,7 +30,34 @@ class PDFMergeCoreTests: XCTestCase {
         merger.run()
         let output = helperReadPDF("out.pdf")
         XCTAssertTrue(output == shortstring)
+    }
 
+    func testTwoArgs() {
+        let merger = PDFMerger(arguments: ["pdfmerge", "instructions.txt", "out.pdf"])
+        merger.run()
+        let output = helperReadPDF("out.pdf")
+        XCTAssertTrue(output == backwardstring)
+    }
+
+    func testThreeAgs() {
+        let merger = PDFMerger(arguments: ["pdfmerge", "a.pdf", "b.pdf", "out.pdf"])
+        merger.run()
+        let output = helperReadPDF("out.pdf")
+        XCTAssertTrue(output == shortstring)
+    }
+
+    func testSubDirectories(){
+        let merger = PDFMerger(arguments: ["pdfmerge", "a.pdf", "inner/c.pdf", "out.pdf"])
+        merger.run()
+        let output = helperReadPDF("out.pdf")
+        XCTAssertTrue(output == funkystring)
+    }
+
+    func testMoreThanTwoPDFs(){
+        let merger = PDFMerger(arguments: ["pdfmerge", "long_instructions.txt", "out.pdf"])
+        merger.run()
+        let output = helperReadPDF("out.pdf")
+        XCTAssertTrue(output == longstring)
     }
 
     override func tearDown() {

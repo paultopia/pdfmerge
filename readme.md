@@ -32,13 +32,13 @@ Depending on the PDF files you use, it might warn you with `CoreGraphics PDF has
 
 This is just a learning project, plus because my [original pdf merging cli](https://github.com/paultopia/mergepdfs) seems to get the order wrong sometimes + has an annoying java dependency. Mostly follwing instructions in [this excellent tutorial](https://www.swiftbysundell.com/posts/building-a-command-line-tool-using-the-swift-package-manager) for structuring the project. 
 
-No tests or anything yet.  When I want to learn how to write tests in swift I'll probably put some in. 
+Now contains &#8734;% more tests!  (Only of the happy path though.)
 
 Also, no error handling at all, if you give it a bad PDF file, it'll just crash. If you give it a nonexistent file to merge, it'll crash.  
 
 However, if you tell it to write to a file that already exists it'll at least be decent enough to refuse to do that.
 
-Not tested on any paths other than current directory, so no promises that it'll work other than on files in the directory you happen to run it in. Please file an issue if that doesn't work though, and I'll learn how paths in swift work.
+It works on relative paths at least beneath the working directory. Haven't tested to see if it works on paths above the working directory yet.
 
 Current binary in releases tab.
 
