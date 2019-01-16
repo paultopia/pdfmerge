@@ -28,19 +28,17 @@ merges files listed line-by-line in infiles.txt
 
 ## Misc info
 
-Depending on the PDF files you use, it might warn you with `CoreGraphics PDF has logged an error. Set environment variabe "CG_PDF_VERBOSE" to learn more.` (including the typo!!). That error is probably safe to ignore: in my local development after setting that variable it turns out it's just some random font problem, probably pandoc/latex's fault. `WARNING: Type1 font data isn't in the correct format required by the Adobe Type 1 Font Format specification.`
-
 This is just a learning project, plus because my [original pdf merging cli](https://github.com/paultopia/mergepdfs) seems to get the order wrong sometimes + has an annoying java dependency. Mostly follwing instructions in [this excellent tutorial](https://www.swiftbysundell.com/posts/building-a-command-line-tool-using-the-swift-package-manager) for structuring the project. 
 
 Now contains &#8734;% more tests!  (Only of the happy path though.)
 
-Also, no error handling at all, if you give it a bad PDF file, it'll just crash. If you give it a nonexistent file to merge, it'll crash.  
+Depending on the PDF files you use, it might warn you with `CoreGraphics PDF has logged an error. Set environment variabe "CG_PDF_VERBOSE" to learn more.` (including the typo!!). That error is probably safe to ignore: in my local development after setting that variable it turns out it's just some random font problem, probably pandoc/latex's fault. `WARNING: Type1 font data isn't in the correct format required by the Adobe Type 1 Font Format specification.`
 
-However, if you tell it to write to a file that already exists it'll at least be decent enough to refuse to do that.
+Also, no error handling at all, if you give it a bad PDF file, it'll just crash. If you give it a nonexistent file to merge, it'll crash. Now that I have tests for the happy path, the next step is to learn proper error handling and develop tests for the unhappy paths that at least cause it to crash with sensible error messages (and don't rely so much in the code on aggressive force-unwrapping of options and `try!` on everything that throws).
 
-It works on relative paths at least beneath the working directory. Haven't tested to see if it works on paths above the working directory yet.
+If you tell it to write to a file that already exists it'll at least be decent enough to refuse to do that.
 
-Current binary in releases tab.
+Working binary in releases tab; code may be a little bit ahead but functionality won't be different, I'll release on every functional change.
 
 All code released under the WTFPL, included below:
 

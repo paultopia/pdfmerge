@@ -22,7 +22,7 @@ class PDFMergeCoreTests: XCTestCase {
     override class func setUp() {
         super.setUp()
         let filemanager = FileManager()
-        filemanager.changeCurrentDirectoryPath("testpdfs")
+        filemanager.changeCurrentDirectoryPath("testpdfs/main")
     }
 
     func testOneArg() {
@@ -48,6 +48,13 @@ class PDFMergeCoreTests: XCTestCase {
 
     func testSubDirectories(){
         let merger = PDFMerger(arguments: ["pdfmerge", "a.pdf", "inner/c.pdf", "out.pdf"])
+        merger.run()
+        let output = helperReadPDF("out.pdf")
+        XCTAssertTrue(output == funkystring)
+    }
+
+    func testSuperDirectories(){
+        let merger = PDFMerger(arguments: ["pdfmerge", "a.pdf", "../c.pdf", "out.pdf"])
         merger.run()
         let output = helperReadPDF("out.pdf")
         XCTAssertTrue(output == funkystring)
