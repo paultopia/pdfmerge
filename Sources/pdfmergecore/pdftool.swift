@@ -14,21 +14,14 @@ public final class PDFMerger {
         else {
         let merged = mergePDFs(files: files)
         merged.write(toFile: outfile)
+        print("Success! Merged \(files) into \(outfile)!")
         }
-    }
-
-    fileprivate func fixSubstrings(_ ick: [Substring]) -> [String]{
-        var outarray: [String] = []
-        for i in ick {
-            outarray.append(String(i))
-        }
-        return outarray
     }
 
     fileprivate func getListFromFile(_ infile: String) -> [String]{
         let text = try! String(contentsOfFile: infile, encoding: .utf8)
         let substrings = text.split(separator: "\n")
-        return fixSubstrings(substrings)
+        return substrings.map { String($0) } // because split returns an array of Substrings not of Strings annoyingly.
     }
 
     public func run() {
@@ -38,24 +31,17 @@ public final class PDFMerger {
           "pdfmerge infile1.pdf infile2.pdf infile3.pdf ... outfile.pdf" -> merges files in order given
           "pdfmerge infiles.txt outfile.pdf" -> merges files listed line-by-line in infiles.txt
           """
-        switch self.arguments.count {
+        let numargs = self.arguments.count
+        let outfile = self.arguments.removeLast()
+        switch numargs {
         case 1:
             print(instructions)
         case 2:
-            let outfile = self.arguments.removeLast()
-            let files = listPDFsInCurrentDirectory()
-            doMerge(files: files, outfile: outfile)
-            print("done!")
+            doMerge(files: listPDFsInCurrentDirectory(), outfile: outfile)
         case 3:
-            let outfile = self.arguments.removeLast()
-            let files = getListFromFile(self.arguments[1])
-            doMerge(files: files, outfile: outfile)
-            print("done!")
+            doMerge(files: getListFromFile(self.arguments[1]), outfile: outfile)
         default:
-            let outfile = self.arguments.removeLast()
-            let files = Array(self.arguments[1...])
-            doMerge(files: files, outfile: outfile)
-            print("done!")
+            doMerge(files: Array(self.arguments[1...]), outfile: outfile)
         }
     }
 }
