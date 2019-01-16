@@ -41,7 +41,6 @@ public func mergePDFs(files: [String]) -> PDFDocument {
 func listPDFsInCurrentDirectory() -> [String]{
     let fileManager = FileManager()
     let files = try! fileManager.contentsOfDirectory(atPath: ".")
-    let pdfs = files.filter { $0.hasSuffix(".pdf") }
-    return pdfs.sorted(by: <)
+    return files.filter({ $0.hasSuffix(".pdf") }).sorted(by: <)
 }
 
