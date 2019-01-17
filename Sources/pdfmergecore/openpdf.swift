@@ -8,9 +8,7 @@ func fileExists(_ filename: String) -> Bool {
 
 
 func openPDF(_ file: String) throws -> PDFDocument {
-    do {
-        let pdata = try NSData(contentsOfFile: file) as Data 
-    } catch {
+    guard let pdata = try? NSData(contentsOfFile: file) as Data else {
         throw PDFMergeError.cannotOpenFile(filename: file)
     }
     guard let pdf = PDFDocument(data: pdata) else {
@@ -46,9 +44,7 @@ func listPDFsInCurrentDirectory() -> [String]{
 }
 
 func getListFromFile(_ file: String) throws -> [String]{
-    do { 
-        let text = try String(contentsOfFile: file, encoding: .utf8)} 
-    catch {
+    guard let text = try? String(contentsOfFile: file, encoding: .utf8)} else {
         throw PDFMergeError.cannotReadFileList(filename: file)
     }
     return text.split(separator: "\n").map(String.init) // because split returns an array of Substrings not of Strings annoyingly.
