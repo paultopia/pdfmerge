@@ -8,8 +8,8 @@ func fileExists(_ filename: String) -> Bool {
 
 
 func openPDF(_ file: String) throws -> PDFDocument {
-    try {
-        let pdata = NSData(contentsOfFile: file) as Data 
+    do {
+        let pdata = try NSData(contentsOfFile: file) as Data 
     } catch {
         throw PDFMergeError.cannotOpenFile(filename: file)
     }
@@ -46,8 +46,8 @@ func listPDFsInCurrentDirectory() -> [String]{
 }
 
 func getListFromFile(_ file: String) throws -> [String]{
-    try { 
-        let text = String(contentsOfFile: file, encoding: .utf8)} 
+    do { 
+        let text = try String(contentsOfFile: file, encoding: .utf8)} 
     catch {
         throw PDFMergeError.cannotReadFileList(filename: file)
     }

@@ -7,8 +7,8 @@ import pdfmergecore
 
 let merger = PDFMerger()
 
-try {
-    merger.run()
+do {
+    try merger.run()
     }
 catch is PDFMergeError {
     print("errored, aborted")
