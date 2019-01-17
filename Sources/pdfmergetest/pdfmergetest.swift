@@ -3,7 +3,7 @@ import Quartz
 import XCTest
 import pdfmergecore
 
-class PDFMergeCoreTests: XCTestCase {
+class PDFMergeCoreHappyPathTests: XCTestCase {
 
     let shortstring = "Page 1\n\nPage 2\n\nPage 3\n\nPage 4\n"
 
@@ -67,6 +67,15 @@ class PDFMergeCoreTests: XCTestCase {
         XCTAssertTrue(output == longstring)
     }
     
+    override func tearDown() {
+        let filemanager = FileManager()
+        try! filemanager.removeItem(atPath: "out.pdf")
+        super.tearDown()
+    }
+}
+
+class PDFMergeCoreSadPathTests: XCTestCase {
+
     func testThrowsOnExistingTarget() throws {
         let merger = PDFMerger(arguments: ["pdfmerge", "a.pdf"])
         XCTAssertThrowsError(try merger.run())
@@ -87,10 +96,4 @@ class PDFMergeCoreTests: XCTestCase {
         XCTAssertThrowsError(try merger.run())
     }
 
-    override func tearDown() {
-        let filemanager = FileManager()
-        try! filemanager.removeItem(atPath: "out.pdf")
-        super.tearDown()
-    }
 }
-
