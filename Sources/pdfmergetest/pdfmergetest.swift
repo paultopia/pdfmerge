@@ -76,6 +76,12 @@ class PDFMergeCoreHappyPathTests: XCTestCase {
 
 class PDFMergeCoreSadPathTests: XCTestCase {
 
+    override class func setUp() {
+        super.setUp()
+        let filemanager = FileManager()
+        filemanager.changeCurrentDirectoryPath("testpdfs/main")
+    }
+
     func testThrowsOnExistingTarget() throws {
         let merger = PDFMerger(arguments: ["pdfmerge", "a.pdf"])
         XCTAssertThrowsError(try merger.run())
