@@ -7,15 +7,13 @@ func fileExists(_ filename: String) -> Bool {
 }
 
 func openPDF(_ file: String) -> PDFDocument {
-    if fileExists(file){
-        let pdata = try! NSData(contentsOfFile: file) as Data
-        let pdf = PDFDocument(data: pdata)
-        return pdf!
+    guard let pdata = try? NSData(contentsOfFile: file) as Data else {
+        preconditionFailure("Cannot open \(file). It may not exist, or you may not have permissions for it.")
     }
-    else {
-        print("Unable to find file \(file), aborting.")
-        exit(1)
+    guard let pdf = PDFDocument(data: pdata) else {
+        preconditionFailure("Cannot open PDF file \(file). It may not exist, or not be a well-formed PDF file. Aborting.")
     }
+    return pdf
 }
 
 public func mergePDFs(files: [String]) -> PDFDocument {
