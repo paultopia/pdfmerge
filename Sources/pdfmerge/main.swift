@@ -1,15 +1,5 @@
 import pdfmergecore
 
-// "Cannot open \(filename). It may not exist, or you may not have permissions for it."
-// "Cannot rest list of files to merge. Is it a utf-8 encoded text file? It should be."
-// 
-
-
-case targetFileExists(filename: String)
-    case cannotOpenFile(filename: String)
-    case fileNotValidPDF(filename: String)
-    case cannotReadFileList(filename: String)
-
 let merger = PDFMerger()
 
 do {
