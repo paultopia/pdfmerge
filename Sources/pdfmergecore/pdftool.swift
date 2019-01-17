@@ -7,9 +7,9 @@ public final class PDFMerger {
         self.arguments = arguments
     }
 
-    fileprivate func doMerge(files: [String], outfile: String) {
-        if fileExists(outfile) {
-            preconditionFailure("Target file already exists. Aborting.")
+    public func doMerge(files: [String], outfile: String, unsafe: Bool = false) throws {
+        if fileExists(outfile) && !unsafe {
+            throw PDFMergeError.targetFileExists(filename: outfile)
         }
         else {
         let merged = mergePDFs(files: files)
@@ -18,7 +18,7 @@ public final class PDFMerger {
         }
     }
 
-    public func run() {
+    public func run() throws {
         let instructions = """
           Calling options:
           "pdfmerge outfile.pdf" -> merge every pdf file in directory in ABC order to outfile.pdf

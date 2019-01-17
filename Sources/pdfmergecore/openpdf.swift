@@ -6,17 +6,20 @@ func fileExists(_ filename: String) -> Bool {
     return fileManager.fileExists(atPath: filename)
 }
 
-func openPDF(_ file: String) -> PDFDocument {
-    guard let pdata = try? NSData(contentsOfFile: file) as Data else {
-        preconditionFailure("Cannot open \(file). It may not exist, or you may not have permissions for it.")
+
+func openPDF(_ file: String) throws -> PDFDocument {
+    try {
+        let pdata = NSData(contentsOfFile: file) as Data 
+    } catch {
+        throw PDFMergeError.cannotOpenFile(filename: file)
     }
     guard let pdf = PDFDocument(data: pdata) else {
-        preconditionFailure("Cannot open PDF file \(file). It may not exist, or not be a well-formed PDF file. Aborting.")
+        throw PDFMergeError.fileNotValidPDF(filename: file)
     }
         return pdf
 }
 
-public func mergePDFs(files: [String]) -> PDFDocument {
+public func mergePDFs(files: [String]) throws -> PDFDocument {
     let first = files[0]
     let rest = files[1...]
     let pdf = openPDF(first)
@@ -38,17 +41,15 @@ public func mergePDFs(files: [String]) -> PDFDocument {
 
 func listPDFsInCurrentDirectory() -> [String]{
     let fileManager = FileManager()
-    guard let files = try? fileManager.contentsOfDirectory(atPath: ".") else {
-    preconditionFailure("Cannot open list of files to merge. Aborting.")
-    }
-    return files
-      .filter({ $0.hasSuffix(".pdf") }).sorted(by: <)
+    let files = try! fileManager.contentsOfDirectory(atPath: ".") // forcing this because there's no reasonable way it wouldn't be able to see the current working directory, absent some bizarre race with another process deleting it or something
+    return files.filter({ $0.hasSuffix(".pdf") }).sorted(by: <)
 }
 
-func getListFromFile(_ infile: String) -> [String]{
-    guard let text = try? String(contentsOfFile: infile, encoding: .utf8) else {
-    preconditionFailure("Cannot rest list of files to merge. Is it a utf-8 encoded text file? It should be.")
+func getListFromFile(_ file: String) throws -> [String]{
+    try { 
+        let text = String(contentsOfFile: file, encoding: .utf8)} 
+    catch {
+        throw PDFMergeError.cannotReadFileList(filename: file)
     }
-    return text
-      .split(separator: "\n").map(String.init) // because split returns an array of Substrings not of Strings annoyingly.
+    return text.split(separator: "\n").map(String.init) // because split returns an array of Substrings not of Strings annoyingly.
 }

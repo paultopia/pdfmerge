@@ -25,42 +25,42 @@ class PDFMergeCoreTests: XCTestCase {
         filemanager.changeCurrentDirectoryPath("testpdfs/main")
     }
 
-    func testOneArg() {
+    func testOneArg() throws {
         let merger = PDFMerger(arguments: ["pdfmerge", "out.pdf"]) // since programs always gets name of executable as 0th arg
         merger.run()
         let output = helperReadPDF("out.pdf")
         XCTAssertTrue(output == shortstring)
     }
 
-    func testTwoArgs() {
+    func testTwoArgs() throws {
         let merger = PDFMerger(arguments: ["pdfmerge", "instructions.txt", "out.pdf"])
         merger.run()
         let output = helperReadPDF("out.pdf")
         XCTAssertTrue(output == backwardstring)
     }
 
-    func testThreeAgs() {
+    func testThreeAgs() throws {
         let merger = PDFMerger(arguments: ["pdfmerge", "a.pdf", "b.pdf", "out.pdf"])
         merger.run()
         let output = helperReadPDF("out.pdf")
         XCTAssertTrue(output == shortstring)
     }
 
-    func testSubDirectories(){
+    func testSubDirectories() throws {
         let merger = PDFMerger(arguments: ["pdfmerge", "a.pdf", "inner/c.pdf", "out.pdf"])
         merger.run()
         let output = helperReadPDF("out.pdf")
         XCTAssertTrue(output == funkystring)
     }
 
-    func testSuperDirectories(){
+    func testSuperDirectories() throws {
         let merger = PDFMerger(arguments: ["pdfmerge", "a.pdf", "../c.pdf", "out.pdf"])
         merger.run()
         let output = helperReadPDF("out.pdf")
         XCTAssertTrue(output == funkystring)
     }
 
-    func testMoreThanTwoPDFs(){
+    func testMoreThanTwoPDFs() throws {
         let merger = PDFMerger(arguments: ["pdfmerge", "long_instructions.txt", "out.pdf"])
         merger.run()
         let output = helperReadPDF("out.pdf")
