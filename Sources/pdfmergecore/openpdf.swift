@@ -22,13 +22,13 @@ func openPDF(_ file: String) throws -> PDFDocument {
 public func mergePDFs(files: [String]) throws -> PDFDocument {
     let first = files[0]
     let rest = files[1...]
-    let pdf = openPDF(first)
+    let pdf = try openPDF(first)
     var curpagenum = pdf.pageCount
     var cur2add: PDFDocument
     var curpage: PDFPage
     var lenOfCurAdd: Int
     for p2add in rest {
-        cur2add = openPDF(p2add)
+        cur2add = try openPDF(p2add)
         lenOfCurAdd = cur2add.pageCount
         for i in 0..<lenOfCurAdd {
             curpage = cur2add.page(at: i)!

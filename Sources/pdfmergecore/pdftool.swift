@@ -12,7 +12,7 @@ public final class PDFMerger {
             throw PDFMergeError.targetFileExists(filename: outfile)
         }
         else {
-        let merged = mergePDFs(files: files)
+        let merged = try mergePDFs(files: files)
         merged.write(toFile: outfile)
         print("Success! Merged \(files) into \(outfile)!")
         }
@@ -31,11 +31,11 @@ public final class PDFMerger {
         case 1:
             print(instructions)
         case 2:
-            doMerge(files: listPDFsInCurrentDirectory(), outfile: outfile)
+            try doMerge(files: listPDFsInCurrentDirectory(), outfile: outfile)
         case 3:
-            doMerge(files: getListFromFile(self.arguments[1]), outfile: outfile)
+            try doMerge(files: getListFromFile(self.arguments[1]), outfile: outfile)
         default:
-            doMerge(files: Array(self.arguments[1...]), outfile: outfile)
+            try doMerge(files: Array(self.arguments[1...]), outfile: outfile)
         }
     }
 }
