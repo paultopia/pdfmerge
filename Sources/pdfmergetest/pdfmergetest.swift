@@ -66,6 +66,26 @@ class PDFMergeCoreTests: XCTestCase {
         let output = helperReadPDF("out.pdf")
         XCTAssertTrue(output == longstring)
     }
+    
+    func testThrowsOnExistingTarget() throws {
+        let merger = PDFMerger(arguments: ["pdfmerge", "a.pdf"])
+        XCTAssertThrowsError(try merger.run())
+    }
+    
+    func testThrowsOnNonexistentPDF() throws {
+        let merger = PDFMerger(arguments: ["pdfmerge", "a.pdf", "nonexistent.pdf", "out.pdf"])
+        XCTAssertThrowsError(try merger.run())
+    }
+    
+    func testThrowsOnFileNotPDF() throws {
+        let merger = PDFMerger(arguments: ["pdfmerge", "a.pdf", "instructions.txt", "out.pdf"])
+        XCTAssertThrowsError(try merger.run())
+    }
+    
+    func testThrowsOnUnreadableInstructions() throws {
+        let merger = PDFMerger(arguments: ["pdfmerge", "nonexistent.txt", "out.pdf"])
+        XCTAssertThrowsError(try merger.run())
+    }
 
     override func tearDown() {
         let filemanager = FileManager()
