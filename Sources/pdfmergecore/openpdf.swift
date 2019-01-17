@@ -8,12 +8,10 @@ func fileExists(_ filename: String) -> Bool {
 
 
 func openPDF(_ file: String) throws -> PDFDocument {
-    guard let pdata = try? NSData(contentsOfFile: file) as Data 
-    else {
+    guard let pdata = try? NSData(contentsOfFile: file) as Data else {
         throw PDFMergeError.cannotOpenFile(filename: file)
     }
-    guard let pdf = PDFDocument(data: pdata) 
-    else {
+    guard let pdf = PDFDocument(data: pdata) else {
         throw PDFMergeError.fileNotValidPDF(filename: file)
     }
         return pdf
@@ -39,15 +37,14 @@ public func mergePDFs(files: [String]) throws -> PDFDocument {
     return pdf
 }
 
-func listPDFsInCurrentDirectory() -> [String]{
+func listPDFsInCurrentDirectory() -> [String] {
     let fileManager = FileManager()
     let files = try! fileManager.contentsOfDirectory(atPath: ".") // forcing this because there's no reasonable way it wouldn't be able to see the current working directory, absent some bizarre race with another process deleting it or something
     return files.filter({ $0.hasSuffix(".pdf") }).sorted(by: <)
 }
 
-func getListFromFile(_ file: String) throws -> [String]{
-    guard let text = try? String(contentsOfFile: file, encoding: .utf8)} 
-    else {
+func getListFromFile(_ file: String) throws -> [String] {
+    guard let text = try? String(contentsOfFile: file, encoding: .utf8) else {
         throw PDFMergeError.cannotReadFileList(filename: file)
     }
     return text.split(separator: "\n").map(String.init) // because split returns an array of Substrings not of Strings annoyingly.
