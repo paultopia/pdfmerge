@@ -9,7 +9,7 @@ public final class PDFMerger {
 
     fileprivate func doMerge(files: [String], outfile: String) {
         if fileExists(outfile) {
-            print("ERROR: target file already exists. Aborting.")
+            preconditionFailure("Target file already exists. Aborting.")
         }
         else {
         let merged = mergePDFs(files: files)

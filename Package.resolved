@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Require",
+        "repositoryURL": "git@github.com:johnsundell/require.git",
+        "state": {
+          "branch": null,
+          "revision": "44d526601e81dc169766c429e27405c5adfdcbf2",
+          "version": "1.0.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
