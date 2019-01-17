@@ -18,11 +18,6 @@ public final class PDFMerger {
         }
     }
 
-    fileprivate func getListFromFile(_ infile: String) -> [String]{
-        let text = try! String(contentsOfFile: infile, encoding: .utf8)
-        return text.split(separator: "\n").map(String.init) // because split returns an array of Substrings not of Strings annoyingly.
-    }
-
     public func run() {
         let instructions = """
           Calling options:

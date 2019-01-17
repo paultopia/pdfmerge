@@ -43,3 +43,9 @@ func listPDFsInCurrentDirectory() -> [String]{
       .filter({ $0.hasSuffix(".pdf") }).sorted(by: <)
 }
 
+func getListFromFile(_ infile: String) -> [String]{
+    let text = try? String(contentsOfFile: infile, encoding: .utf8)
+    return text
+      .require(hint: "Cannot rest list of files to merge. Is it a utf-8 encoded text file? It should be.")
+      .split(separator: "\n").map(String.init) // because split returns an array of Substrings not of Strings annoyingly.
+}
