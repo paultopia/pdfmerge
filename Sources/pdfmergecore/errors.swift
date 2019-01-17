@@ -1,4 +1,4 @@
-enum PDFMergeError: Error {
+public enum PDFMergeError: Error {
     case targetFileExists(filename: String)
     case cannotOpenFile(filename: String)
     case fileNotValidPDF(filename: String)
