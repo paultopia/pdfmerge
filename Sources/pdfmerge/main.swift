@@ -11,6 +11,6 @@ do {
     } catch PDFMergeError.fileNotValidPDF(let filename) {
         print("File \(filename) does not appear to be a valid PDF. Aborting.")
     } catch PDFMergeError.cannotReadFileList(let filename) {
-        print("Cannot rest list of files to merge in \(filename). Is it a utf-8 encoded text file? It should be. Aborting")
+        print("Cannot read list of files to merge in \(filename). Is it a utf-8 encoded text file? It should be. Aborting")
     }
     
