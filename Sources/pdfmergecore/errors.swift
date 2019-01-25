@@ -3,4 +3,6 @@ public enum PDFMergeError: Error {
     case cannotOpenFile(filename: String)
     case fileNotValidPDF(filename: String)
     case cannotReadFileList(filename: String)
+    case noFilesChosen
+    case noDestinationChosen
 }

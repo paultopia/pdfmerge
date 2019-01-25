@@ -27,11 +27,22 @@ public final class PDFMerger {
           """
         let numargs = self.arguments.count
         let outfile = self.arguments.removeLast()
+
         switch numargs {
         case 1:
             print(instructions)
         case 2:
-            try doMerge(files: listPDFsInCurrentDirectory(), outfile: outfile)
+            if outfile == "GUI" {
+                guard let infiles = selectFilesGUI()?.map({$0.path}) else {
+                    throw PDFMergeError.noFilesChosen
+                }
+                guard let guiOut = setDestGUI()?.path else {
+                    throw PDFMergeError.noDestinationChosen
+                }
+                try doMerge(files: infiles, outfile: guiOut)
+            } else {
+                try doMerge(files: listPDFsInCurrentDirectory(), outfile: outfile)
+            }
         case 3:
             try doMerge(files: getListFromFile(self.arguments[1]), outfile: outfile)
         default:
