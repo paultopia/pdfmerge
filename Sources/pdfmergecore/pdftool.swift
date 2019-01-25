@@ -34,7 +34,10 @@ public final class PDFMerger {
             print(instructions)
         case 2:
             if outfile == "GUI" {
-                guard let infiles = selectFilesGUI()?.map({$0.path}) else {
+                guard let infiles = selectFilesGUI()?
+                        .map({$0.path})
+                        .filter({ $0.hasSuffix(".pdf") })
+                        .sorted(by: <) else {
                     throw PDFMergeError.noFilesChosen
                 }
                 guard let guiOut = setDestGUI()?.path else {
@@ -42,7 +45,8 @@ public final class PDFMerger {
                 }
                 try doMerge(files: infiles, outfile: guiOut)
             } else {
-                try doMerge(files: listPDFsInCurrentDirectory(), outfile: outfile)
+                let infiles = try listPDFsInCurrentDirectory()
+                try doMerge(files: infiles, outfile: outfile)
             }
         case 3:
             try doMerge(files: getListFromFile(self.arguments[1]), outfile: outfile)

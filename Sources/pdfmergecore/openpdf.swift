@@ -37,10 +37,15 @@ public func mergePDFs(files: [String]) throws -> PDFDocument {
     return pdf
 }
 
-func listPDFsInCurrentDirectory() -> [String] {
+func listPDFsInCurrentDirectory() throws -> [String] {
     let fileManager = FileManager()
     let files = try! fileManager.contentsOfDirectory(atPath: ".") // forcing this because there's no reasonable way it wouldn't be able to see the current working directory, absent some bizarre race with another process deleting it or something
-    return files.filter({ $0.hasSuffix(".pdf") }).sorted(by: <)
+    let pdfs = files.filter({ $0.hasSuffix(".pdf") }).sorted(by: <)
+    if pdfs.count == 0 {
+        throw PDFMergeError.noPDFFilesInDirectory
+    } else {
+        return pdfs
+    }
 }
 
 func getListFromFile(_ file: String) throws -> [String] {

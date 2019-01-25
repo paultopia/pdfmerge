@@ -15,7 +15,7 @@ Calling options:
 pdfmerge outfile.pdf
 ```
 
-merge every pdf file in directory in ABC order to outfile.pdf
+merge every pdf file in directory in ABC order by filename to outfile.pdf
 
 <hr>
 
@@ -43,7 +43,7 @@ In addition, there's a **special fancy grotesquely hacked-together GUI**: if you
 pdfmerge GUI
 ```
 
-then you'll get a file picker window where you can command-select multiple files to merge, and then another window to select a save location. 
+then you'll get a file picker window where you can command-select multiple files to merge (currently, you can only pick them in one go and it'll merge them in ABC order), and then another window to select a save location. 
 
 Right now, it'll barf and refuse to put up with your instructions if you: 
 

@@ -22,4 +22,6 @@ do {
     print("No destination file chosen! Operation canceled.")
 } catch PDFMergeError.justOneInputFile {
     print("It really makes no sense to just to merge just one PDF. Aborting.")
+} catch PDFMergeError.noPDFFilesInDirectory {
+    print("No PDF files to merge in current directory.")
 }

@@ -107,4 +107,15 @@ class PDFMergeCoreSadPathTests: XCTestCase {
         XCTAssertThrowsError(try merger.run())
     }
 
+    func testThrowsOnNoPDFsInDirectory() throws {
+        let filemanager = FileManager()
+        filemanager.changeCurrentDirectoryPath("empty")
+        let merger = PDFMerger(arguments: ["pdfmerge", "out.pdf"])
+        XCTAssertThrowsError(try merger.run())
+        filemanager.changeCurrentDirectoryPath("..")
+        print("just making sure test suite executes code after assert so I know ")
+        let curdir = String(filemanager.currentDirectoryPath.split(separator: "/").last!)
+        XCTAssertTrue(curdir == "main")
+    }
+
 }

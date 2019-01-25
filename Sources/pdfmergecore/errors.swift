@@ -6,4 +6,5 @@ public enum PDFMergeError: Error {
     case noFilesChosen
     case noDestinationChosen
     case justOneInputFile
+    case noPDFFilesInDirectory
 }
