@@ -10,8 +10,9 @@ public final class PDFMerger {
     public func doMerge(files: [String], outfile: String, unsafe: Bool = false) throws {
         if fileExists(outfile) && !unsafe {
             throw PDFMergeError.targetFileExists(filename: outfile)
-        }
-        else {
+        } else if files.count == 1 {
+            throw PDFMergeError.justOneInputFile
+        } else {
         let merged = try mergePDFs(files: files)
         merged.write(toFile: outfile)
         print("Success! Merged \(files) into \(outfile)!")

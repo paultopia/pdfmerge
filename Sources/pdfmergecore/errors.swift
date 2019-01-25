@@ -5,4 +5,5 @@ public enum PDFMergeError: Error {
     case cannotReadFileList(filename: String)
     case noFilesChosen
     case noDestinationChosen
+    case justOneInputFile
 }

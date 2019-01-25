@@ -102,4 +102,9 @@ class PDFMergeCoreSadPathTests: XCTestCase {
         XCTAssertThrowsError(try merger.run())
     }
 
+    func testThrowsOnSingleFileInput() throws {
+        let merger = PDFMerger(arguments: ["pdfmerge", "dumb_instructions.txt", "out.pdf"])
+        XCTAssertThrowsError(try merger.run())
+    }
+
 }
