@@ -109,14 +109,10 @@ class PDFMergeCoreSadPathTests: XCTestCase {
 
     func testThrowsOnNoPDFsInDirectory() throws {
         let filemanager = FileManager()
-        // adding some directory prints to see what's going wrong on travis ci
-        print(filemanager.currentDirectoryPath)
         filemanager.changeCurrentDirectoryPath("empty")
-        print(filemanager.currentDirectoryPath)
         let merger = PDFMerger(arguments: ["pdfmerge", "out.pdf"])
         XCTAssertThrowsError(try merger.run())
         filemanager.changeCurrentDirectoryPath("..")
-        print(filemanager.currentDirectoryPath)
         print("just making sure test suite executes code after assert so I know ")
         let curdir = String(filemanager.currentDirectoryPath.split(separator: "/").last!)
         XCTAssertTrue(curdir == "main")
